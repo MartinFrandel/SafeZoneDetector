@@ -1,6 +1,6 @@
 # SafeZoneDetector
 
-The `SafeZoneDetector` library is designed to detect if the current environment is a sandbox, emulator, or virtual machine. This can be useful for security applications where you need to ensure that your software is running in a trusted environment.
+The `SafeZoneDetector` library is designed to detect whether the current environment is a sandbox, emulator, debugger or virtual machine. This functionality is useful for security applications that require assurance that software is running in a trusted environment.
 
 ## Features
 
@@ -8,7 +8,7 @@ The `SafeZoneDetector` library is designed to detect if the current environment 
   
   ![VirtualEnv](./.img/AvastSanbox.png)
 - Detects if the environment is an emulator.
-- Detects if the environment is a debugger.
+- Detects if a debugger is present.
   
   ![VirtualEnv](./.img/Debugger.png)
 - Detects if the environment is a virtual machine.
@@ -30,8 +30,7 @@ Include the `SafeZoneDetector.h` header file in your project:
 
 ### 2. Initialize the detector
 
-Initialize the detector class preferably at the begginig of the main function:
-
+Instantiate the detector class at the beginning of the main function:
 
 ```cpp
 SafeZoneDetector detector;
@@ -39,7 +38,7 @@ SafeZoneDetector detector;
 
 ### 3. Use the library
 
-Use the library methods to check for emulators, sandboxes of virtual machines.
+Utilize the library methods to check for emulators, sandboxes, debuggers or virtual machines.
 
 ```cpp
 // Check for any virtual environment
@@ -49,21 +48,21 @@ if (detector.isAnyVirtualEnvironment()) {
     std::cout << "No virtual environment detected." << std::endl;
 }
 
-// Check for sandboxed environment
+// Check for a sandboxed environment
 if (detector.isSandboxed()) {
     std::cout << "Sandboxed environment detected!" << std::endl;
 } else {
     std::cout << "No Sandboxed environment detected." << std::endl;
 }
 
-// Check for emulator
+// Check for an emulator
 if (detector.isEmulator()) {
     std::cout << "Emulator environment detected!" << std::endl;
 } else {
     std::cout << "No Emulator environment detected." << std::endl;
 }
 
-// Check for debugger
+// Check for a debugger
 if (detector.isDebuggerPresentCheck()) {
     std::cout << "Debugger environment detected!" << std::endl;
 } else {
@@ -80,14 +79,14 @@ if (detector.isVirtualMachine()) {
 
 ### 4. Compile the binary
 
-Compile the binary with g++ and std C11
+Compile the binary with g++ using C++11:
 ```bash
 g++ .\main.cpp -o detector.exe -Wall -Wextra -std=c++11
 ```
 
 
 ### (optional) Strip the symbols and selections
-Remove all symbol and relocation information to make the binary smaller and harder to analyze
+Remove all symbol and relocation information to reduce the binary size and make it harder to analyze:
 
 ```bash
 strip.exe .\detector.exe -s
