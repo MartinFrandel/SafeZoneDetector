@@ -20,27 +20,48 @@ The `SafeZoneDetector` library is designed to detect whether the current environ
 
 ## Usage
 
-### 1. Include the Header
+### 1. Create a New Project
 
-Include the `SafeZoneDetector.h` header file in your project:
+Create a new C# console application using the .NET CLI:
 
-```cpp
-#include "SafeZoneDetector.h"
+```bash
+dotnet new console -n SafeZoneDetectorDemo
+cd SafeZoneDetectorDemo
 ```
 
-### 2. Initialize the detector
+### 2. Add the Detector Class
 
-Instantiate the detector class at the beginning of the main function:
+Copy a file named SafeZoneDetector.cs in your project directory and paste the SafeZoneDetector class code into it.
 
-```cpp
-SafeZoneDetector detector;
-```
 
 ### 3. Use the library
 
 Utilize the library methods to check for emulators, sandboxes, debuggers or virtual machines.
 
-```cpp
+```cs
+using System;
+
+namespace SafeZoneDetectorDemo
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var detector = new SafeZoneDetector.Detector();
+
+            if (detector.IsAnyVirtualEnvironment())
+            {
+                Console.WriteLine("Virtual environment detected!");
+            }
+            else
+            {
+                Console.WriteLine("No virtual environment detected.");
+            }
+        }
+    }
+}
+
+
 // Check for any virtual environment
 if (detector.isAnyVirtualEnvironment()) {
     std::cout << "Virtual environment detected!" << std::endl;
@@ -79,9 +100,13 @@ if (detector.isVirtualMachine()) {
 
 ### 4. Compile the binary
 
-Compile the binary with g++ using C++11:
+Compile the binary with dotnet:
 ```bash
-g++ .\main.cpp -o detector.exe -Wall -Wextra -std=c++11
+dotnet build
+
+# and run
+dotnet run
+# or locate binary in ./bin/... folder
 ```
 
 
@@ -89,5 +114,5 @@ g++ .\main.cpp -o detector.exe -Wall -Wextra -std=c++11
 Remove all symbol and relocation information to reduce the binary size and make it harder to analyze:
 
 ```bash
-strip.exe .\detector.exe -s
+dotnet publish -c Release -o ./publish
 ```
