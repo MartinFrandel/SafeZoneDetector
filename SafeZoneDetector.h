@@ -24,8 +24,13 @@ public:
         return checkVirtualMachine();
     }
 
+    bool isDebuggerPresentCheck() {
+        bool isDebuggerPresent = IsDebuggerPresent();
+        return isDebuggerPresent;
+    }
+
     bool isAnyVirtualEnvironment() {
-        return isSandboxed() || isEmulator() || isVirtualMachine();
+        return isSandboxed() || isEmulator() || isVirtualMachine() || isDebuggerPresentCheck();
     }
 
 private:
